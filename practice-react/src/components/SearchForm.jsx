@@ -1,13 +1,7 @@
 import React from 'react';
 
 const SearchForm = props => {
-  const { onSearch, onReset, query, setQuery } = props;  
-
-  // useEffect(() => {
-  //   if (query.length === 0) {
-  //     onReset();
-  //   }    
-  // }, [query.length, onReset]);
+  const { onSearch, onReset, query, setQuery } = props;
 
   const onChange = (e) => {
     setQuery(e.target.value);
@@ -20,7 +14,6 @@ const SearchForm = props => {
 
   const onClick = (e) => {
     onReset();
-    // setQuery('');
   }
 
   console.log('SearchForm render()');

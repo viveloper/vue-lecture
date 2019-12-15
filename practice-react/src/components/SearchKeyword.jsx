@@ -1,28 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import KeywordModel from '../models/KeywordModel';
+import React from 'react';
 
 const SearchKeyword = props => {
-  const { onSearch } = props;
-  const [data, setData] = useState([]);
+  const { keywords, onSearch } = props;
 
-  useEffect(() => {
-    KeywordModel.list().then(data => {
-      setData(data);
-    })
-  }, []);
-
-  const onClick = index => {    
-    onSearch(data[index].keyword);
+  const onClick = index => {
+    onSearch(keywords[index].keyword);
   }
 
   console.log('SearchKeyword render()');
   return (
     <div id="search-keyword">
       {
-        data.length > 0 &&
+        keywords.length > 0 &&
         <ul className="list">
           {
-            data.map((item, index) => {
+            keywords.map((item, index) => {
               return (
                 <li key={item.keyword} onClick={(e) => onClick(index)}>
                   <span className="number">{index + 1}</span>{item.keyword}

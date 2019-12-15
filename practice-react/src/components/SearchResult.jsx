@@ -1,39 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import SearchModel from '../models/SearchModel';
+import React from 'react';
 
 const SearchResult = props => {
-  const { query } = props;
-
-  const [data, setData] = useState([]);
-
-  useEffect(() => {        
-    if (query) {            
-      SearchModel.list(query).then(data => {                
-        setData(data);        
-      });
-    }        
-  }, [query]);
+  const { searchResult, submitted } = props;
 
   console.log('SearchResult render()');
   return (
     <div id="search-result">
       {
-        data.length > 0 ?
-        <ul>
-          {
-            data.map((item, index) => {
-              return (
-                <li key={item.id}>
-                  <img src={item.image} alt={item.image} />
-                  <p>{item.name}</p>
-                </li>
-              )
-            })
-          }
-        </ul>
-        :
-        '검색 결과가 없습니다'
-      }      
+        searchResult.length === 0 && submitted === false ?
+          '검색 결과가 없습니다'
+          :
+          <ul>
+            {
+              searchResult.map((item, index) => {
+                return (
+                  <li key={item.id}>
+                    <img src={item.image} alt={item.image} />
+                    <p>{item.name}</p>
+                  </li>
+                )
+              })
+            }
+          </ul>
+      }
     </div>
   );
 }

@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
-import { tabName } from '../constants';
+import React from 'react';
+import { TAB_NAME } from '../constants';
 
-const Tab = () => {
-  const [selectedTab, setSelectedTab] = useState(tabName[0]);
+const Tab = props => {
+  const { selectedTab, onClickTab } = props
 
   const onClick = e => {
-    if (e.target.innerHTML === tabName[0]) {
-      setSelectedTab(tabName[0]);
-    }
-    else {
-      setSelectedTab(tabName[1]);
-    }
+    onClickTab(e.target.innerHTML)
   }
 
   console.log('Tab render()');
   return (
     <ul id="tabs" className="tabs">
-      <li className={selectedTab === tabName[0] ? 'active' : null} onClick={onClick}>{tabName[0]}</li>
-      <li className={selectedTab === tabName[1] ? 'active' : null} onClick={onClick}>{tabName[1]}</li>
+      <li className={selectedTab === TAB_NAME[0] ? 'active' : null} onClick={onClick}>{TAB_NAME[0]}</li>
+      <li className={selectedTab === TAB_NAME[1] ? 'active' : null} onClick={onClick}>{TAB_NAME[1]}</li>
     </ul>
   );
 }

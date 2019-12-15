@@ -1,1 +1,1 @@
-export const tabName = ['추천 검색어', '최근 검색어'];
+export const TAB_NAME = ['추천 검색어', '최근 검색어'];
