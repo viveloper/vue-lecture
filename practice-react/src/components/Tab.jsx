@@ -13,6 +13,7 @@ const Tab = () => {
     }
   }
 
+  console.log('Tab render()');
   return (
     <ul id="tabs" className="tabs">
       <li className={selectedTab === tabName[0] ? 'active' : null} onClick={onClick}>{tabName[0]}</li>
@@ -21,4 +22,4 @@ const Tab = () => {
   );
 }
 
-export default Tab;
+export default React.memo(Tab);

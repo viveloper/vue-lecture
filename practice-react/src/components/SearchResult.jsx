@@ -6,18 +6,19 @@ const SearchResult = props => {
 
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    if (query) {
-      SearchModel.list(query).then(data => {
-        setData(data);
+  useEffect(() => {        
+    if (query) {            
+      SearchModel.list(query).then(data => {                
+        setData(data);        
       });
-    }
+    }        
   }, [query]);
 
+  console.log('SearchResult render()');
   return (
     <div id="search-result">
       {
-        data.length > 0 &&
+        data.length > 0 ?
         <ul>
           {
             data.map((item, index) => {
@@ -30,7 +31,9 @@ const SearchResult = props => {
             })
           }
         </ul>
-      }
+        :
+        '검색 결과가 없습니다'
+      }      
     </div>
   );
 }

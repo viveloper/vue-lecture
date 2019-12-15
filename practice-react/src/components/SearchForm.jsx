@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const SearchForm = props => {
-  const { onSearch, onReset } = props;
+  const { onSearch, onReset, query, setQuery } = props;  
 
-  const [value, setValue] = useState('');
-
-  useEffect(() => {
-    if (value.length === 0) {
-      onReset();
-    }
-  });
+  // useEffect(() => {
+  //   if (query.length === 0) {
+  //     onReset();
+  //   }    
+  // }, [query.length, onReset]);
 
   const onChange = (e) => {
-    setValue(e.target.value);
+    setQuery(e.target.value);
   }
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onSearch(value);
+    onSearch(query);
   }
 
   const onClick = (e) => {
-    setValue('');
+    onReset();
+    // setQuery('');
   }
 
+  console.log('SearchForm render()');
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" placeholder="검색어를 입력하세요" autoFocus value={value} onChange={onChange} />
-      {(value.length > 0) && <button type="reset" className="btn-reset" onClick={onClick}></button>}
+      <input type="text" placeholder="검색어를 입력하세요" autoFocus value={query} onChange={onChange} />
+      {(query.length > 0) && <button type="reset" className="btn-reset" onClick={onClick}></button>}
     </form>
   );
 }

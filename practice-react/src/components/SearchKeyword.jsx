@@ -11,10 +11,11 @@ const SearchKeyword = props => {
     })
   }, []);
 
-  const onClick = index => {
-    onSearch(data[index].keyword);    
+  const onClick = index => {    
+    onSearch(data[index].keyword);
   }
 
+  console.log('SearchKeyword render()');
   return (
     <div id="search-keyword">
       {
@@ -23,7 +24,7 @@ const SearchKeyword = props => {
           {
             data.map((item, index) => {
               return (
-                <li key={item.keyword} onClick={() => onClick(index)}>
+                <li key={item.keyword} onClick={(e) => onClick(index)}>
                   <span className="number">{index + 1}</span>{item.keyword}
                 </li>
               );
@@ -35,4 +36,4 @@ const SearchKeyword = props => {
   );
 }
 
-export default SearchKeyword;
+export default React.memo(SearchKeyword);
