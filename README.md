@@ -7,3 +7,5 @@
 ## 3. Vue.js using Component
 
 ## 4. Vue.js using Single File Component
+
+## 5. Vanilla, Vue, React Practice
