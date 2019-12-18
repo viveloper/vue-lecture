@@ -37,6 +37,7 @@ const MainController = {
   renderInitView() {
     TabView.setActiveTab(this.selectedTab);
     this.fetchKeywords();
+    SearchHistoryView.hide();
   },
 
   search(query) {
