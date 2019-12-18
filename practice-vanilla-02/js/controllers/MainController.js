@@ -29,52 +29,52 @@ const MainController = {
       .on('@onClickList', e => this.onClickList(e.detail.keyword))
       .on('@onClickRemoveHistory', e => this.onClickRemoveHistory(e.detail.keyword));
 
-    this.tabs = ['추천 검색어', '최근 검색어'];
     this.selectedTab = '추천 검색어';
-    this.submitted = false;
 
-    this.renderView();
+    this.renderInitView();
   },
-  renderView() {
-    if(this.submitted) {
+
+  renderInitView() {
+    TabView.setActiveTab(this.selectedTab);
+    this.fetchKeywords();
+  },
+
+  search(query) {
+    SearchFormView.setInputValue(query);
+    SearchFormView.showResetBtn(true);
+    SearchModel.list(query).then(data => {
+      SearchResultView.render(data);
       SearchResultView.show();
       TabView.hide();
       SearchKeywordView.hide();
       SearchHistoryView.hide();
-    }
-    else {      
-      TabView.render(this.selectedTab);
-      TabView.show();
-      if (this.selectedTab === this.tabs[0]) {
-        this.fetchKeywords();
-        SearchKeywordView.show();
-        SearchHistoryView.hide();
-      }
-      else {
-        this.fetchHistory();
-        SearchHistoryView.show();
-        SearchKeywordView.hide();
-      }
-    }    
-  },
-  search(query) {
-    SearchModel.list(query).then(data => {
-      SearchResultView.render(data);
     });
     HistoryModel.add(query);
-    SearchFormView.inputEl.value = query;
-    SearchFormView.showResetBtn(true);
-    this.submitted = true;
-    this.renderView();
+    this.fetchHistory();
   },
   reset() {
     SearchResultView.render([]);
-    this.submitted = false;
-    this.renderView();
+    SearchResultView.hide();
+    TabView.show();
+    if (this.selectedTab === '추천 검색어') {
+      SearchKeywordView.show();
+    }
+    else {
+      SearchHistoryView.show();
+    }
   },
   changeTab(tabName) {
-    this.selectedTab = tabName;        
-    this.renderView();
+    this.selectedTab = tabName;
+    if (tabName === '추천 검색어') {
+      this.fetchKeywords();
+      SearchKeywordView.show();
+      SearchHistoryView.hide();
+    }
+    else {
+      this.fetchHistory();
+      SearchKeywordView.hide();
+      SearchHistoryView.show();
+    }
   },
   fetchKeywords() {
     KeywordModel.list().then(data => {

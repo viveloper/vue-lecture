@@ -16,14 +16,15 @@ TabView.bindEvents = function () {
   });
 }
 
-TabView.onClick = function (tabName) {
+TabView.onClick = function (tabName) { 
+  this.setActiveTab(tabName);
   this.emit('@click', { tabName });
 }
 
-TabView.render = function (tabName) {
+TabView.setActiveTab = function (tabName) {
   Array.from(this.el.querySelectorAll('li')).forEach(li => {
     li.className = li.innerHTML === tabName ? 'active' : null;
-  });  
+  });
 }
 
 export default TabView;

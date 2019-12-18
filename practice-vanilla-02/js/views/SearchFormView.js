@@ -9,8 +9,7 @@ SearchFormView.setup = function (el) {
   this.init(el);
   this.inputEl = el.querySelector('[type=text]');
   this.resetEl = el.querySelector('[type=reset]');
-  this.bindEvents();
-  this.showResetBtn(false);
+  this.bindEvents();  
   return this;
 }
 
@@ -20,9 +19,21 @@ SearchFormView.bindEvents = function () {
   this.el.addEventListener('reset', e => this.onReset(e));
 }
 
+SearchFormView.showResetBtn = function (isShow) {
+  if (isShow)
+    this.resetEl.style.display = 'block';
+  else
+    this.resetEl.style.display = 'none';
+}
+
 SearchFormView.onKeyup = function (e) {
-  this.render();
-  if (this.inputEl.value.length === 0) this.onReset();  
+  if (this.inputEl.value.length === 0) {
+    this.showResetBtn(false);
+    this.onReset();
+  }
+  else{
+    this.showResetBtn(true);
+  }  
 }
 
 SearchFormView.onSubmit = function (e) {
@@ -35,24 +46,12 @@ SearchFormView.onSubmit = function (e) {
 SearchFormView.onReset = function (e) {
   if(e) e.preventDefault();
   this.inputEl.value = '';
-  this.render();
+  this.showResetBtn(false);
   this.emit('@reset');
 }
 
-SearchFormView.showResetBtn = function (isShow) {
-  if (isShow)
-    this.resetEl.style.display = 'block';
-  else
-    this.resetEl.style.display = 'none';
-}
-
-SearchFormView.render = function (){
-  if (this.inputEl.value.length === 0) {
-    this.showResetBtn(false);
-  }
-  else{
-    this.showResetBtn(true);
-  }
+SearchFormView.setInputValue = function(value) {
+  this.inputEl.value = value;
 }
 
 export default SearchFormView;
