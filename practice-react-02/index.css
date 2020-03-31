@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 480px;
+  margin: auto;
+}
+
+.btn-delete {
+  position: absolute;
+  top: 50%;
+  right: 0.8rem;
+  transform: translateY(-50%);
+  background-color: #ccc;
+  border-radius: 50%;
+  width: 1.3rem;
+  height: 1.3rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  padding-top: 0.15rem;
+  cursor: pointer;
+}
+
+.btn-hide {
+  display: none;
+}
+
+.header {
+  border-bottom: 2px solid #dddddd;
+}
+
+.title {
+  text-align: center;
+  padding: 0.5rem 0;
+  letter-spacing: 0.2rem;
+}
+
+.section-search {
+  margin-top: 1rem;
+}
+.search-form {
+  position: relative;
+}
+.search-input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.6rem;
+  outline: none;
+}
+
+.section-search-list {
+  margin-top: 1rem;
+}
+.search-list-tab {
+  display: flex;
+}
+.tab {
+  width: 50%;
+  background-color: #eeeeee;
+  border: 2px solid #dddddd;
+  color: #aaa;
+  text-align: center;
+  padding: 0.8rem 0;
+}
+.recommend-tab {
+  border-right: none;
+  cursor: pointer;
+}
+.recent-tab {
+  border-left: none;
+  cursor: pointer;
+}
+.active {
+  background-color: rgb(102, 219, 180);
+  color: #fff;
+  border: 2px solid rgb(102, 219, 180);
+}
+.search-list {
+  list-style-type: none;
+}
+.search-item {
+  position: relative;
+  border: 2px solid #dddddd;
+  border-top: none;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.search-item .search-term {
+  cursor: pointer;
+}
+.date {
+  margin-right: 3rem;
+  color: #aaa;
+}
+
+.search-result {
+  list-style-type: none;
+}
+
+.section-search-result {
+  margin-top: 1rem;
+}
+.result-item,
+.skeleton-item {
+  background-color: #eee;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+.item-image {
+  display: block;
+  width: 200px;
+}
+.item-name {
+}
+
+.skeleton-item {
+  height: 154px;
+  /* animation: flash 0.8s infinite; */
+}
+
+.skeleton-image {
+  width: 180px;
+  height: 130px;
+  background-color: #fff;
+}
+
+.skeleton-name {
+  width: 200px;
+  height: 20px;
+  background-color: #fff;
+  margin-left: 1rem;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
