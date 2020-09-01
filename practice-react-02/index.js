@@ -29,6 +29,9 @@ const App = () => {
       recentTerms.getRecentTerms().then(terms => setTerms([...terms]));
     }
   }, [activeTab]);
+  const handleTermClick = term => {
+    console.log(term);
+  };
 
   return (
     <React.Fragment>
@@ -41,7 +44,7 @@ const App = () => {
       />
       <SearchTerms>
         <Tabs activeTab={activeTab} onChange={handleTabChange} />
-        <Terms activeTab={activeTab} terms={terms} />
+        <Terms activeTab={activeTab} terms={terms} onClick={handleTermClick} />
       </SearchTerms>
       <SearchResult result={searchResult} />
     </React.Fragment>
@@ -173,14 +176,16 @@ const Tabs = ({ activeTab, onChange }) => {
     </div>
   );
 };
-const Terms = ({ activeTab, terms }) => {
+const Terms = ({ activeTab, terms, onClick }) => {
   console.log(activeTab, terms);
   return (
     <ul className="search-list" id="search-list">
       {terms.map(term => {
         return activeTab === tabs.recommend ? (
           <li key={term.name} className="search-item">
-            <span className="search-term">{term.name}</span>
+            <span className="search-term" onClick={() => onClick(term.name)}>
+              {term.name}
+            </span>
           </li>
         ) : (
           <li key={term.name} className="search-item">

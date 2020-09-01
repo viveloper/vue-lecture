@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1 class="title">검색</h1>
+      </div>
+    </header>
+    <section class="section-search">
+      <div class="container">
+        <form class="search-form" id="search-form">
+          <input
+            type="text"
+            class="search-input"
+            id="search-input"
+            placeholder="검색어를 입력하세요"
+          />
+          <span class="btn-delete btn-hide" id="btn-delete">X</span>
+        </form>
+      </div>
+    </section>
+    <section class="section-search-list">
+      <div class="container">
+        <div class="search-list-tab">
+          <div
+            class="tab recommend-tab active"
+            id="recommend-tab"
+            data-name="keywords"
+          >
+            추천 검색어
+          </div>
+          <div class="tab recent-tab" id="recent-tab" data-name="recent">
+            최근 검색어
+          </div>
+        </div>
+        <ul class="search-list" id="search-list"></ul>
+      </div>
+    </section>
+    <section class="section-search-result">
+      <div class="container">
+        <ul class="search-result" id="search-result"></ul>
+      </div>
+    </section>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
