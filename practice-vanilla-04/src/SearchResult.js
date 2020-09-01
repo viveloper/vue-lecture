@@ -5,7 +5,11 @@ class SearchResult extends Component {
     super(props);
     this.el = document.getElementById('search-result');
     this.state = {
-      products: [],
+      products: {
+        loading: false,
+        data: null,
+        error: null,
+      },
     };
     this.render();
     this.componentDidMount();
@@ -14,7 +18,29 @@ class SearchResult extends Component {
     this.setState({ products });
   }
   render() {
-    this.el.innerHTML = this.state.products
+    const { loading, data, error } = this.state.products;
+    if (loading) {
+      this.el.innerHTML = [1, 2, 3]
+        .map(
+          () => `
+            <li class="skeleton-item">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-name"></div>
+            </li>
+          `
+        )
+        .join('');
+      return;
+    }
+    if (error) {
+      this.el.innerHTML = `<li>error!</li>`;
+      return;
+    }
+    if (!data) {
+      this.el.innerHTML = '';
+      return;
+    }
+    this.el.innerHTML = data
       .map(
         (product) => `
           <li class="result-item">

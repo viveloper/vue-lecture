@@ -24,9 +24,27 @@ class App {
   }
   async search(keyword) {
     this.SearchForm.setInputValue(keyword);
-    productsApi.getProducts().then((products) => {
-      this.SearchResult.setProducts(products);
+    this.SearchResult.setProducts({
+      loading: true,
+      data: null,
+      error: null,
     });
+    productsApi
+      .getProducts()
+      .then((products) => {
+        this.SearchResult.setProducts({
+          loading: false,
+          data: products,
+          error: null,
+        });
+      })
+      .catch((error) => {
+        this.SearchResult.setProducts({
+          loading: false,
+          data: null,
+          error,
+        });
+      });
     keywordsApi.addRecentKeyword(keyword).then((newKeyword) => {
       this.Keywords.addRecentKeyword(newKeyword);
     });
@@ -49,7 +67,11 @@ class App {
     this.Keywords.setKeywords([]);
   }
   clearResult() {
-    this.SearchResult.setProducts([]);
+    this.SearchResult.setProducts({
+      loading: false,
+      data: null,
+      error: null,
+    });
   }
   changeTab(tabName) {
     this.Keywords.setCurrentTab(tabName);
